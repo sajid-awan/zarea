@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme light {
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  --color-accent-orange: #803520;
+  --color-accent: #f97316;
+  --color-muted: #6b7280;
+  --color-zarea-primary-orange: #F46600;
+  --color-zarea-accent-orange: #562315;
+  --color-zarea-gray: #9FA7AF;
+  --color-zarea-success: #2DBE73;
+  --color-zarea-secondary: #0E2437;
+  --color-zarea-border-light: #DDDEDF;
+  --color-zarea-black: #000911;
+  --color-zarea-light-gray: #F5F5F5;
+  --color-zarea-border-gray: #C3C5C8;
+  --color-graphite-navy-50: #E7E9EB;
+  --color-accent-orange-50: #FBEEEB;
+}
+
+@theme dark {
+  --color-background: #0a0a0a;
+  --color-foreground: #ededed;
+  --color-accent-orange: #803520;
+  --color-accent: #f97316;
+  --color-muted: #9ca3af;
+  --color-zarea-primary-orange: #F46600;
+  --color-zarea-accent-orange: #562315;
+  --color-zarea-gray: #9FA7AF;
+  --color-zarea-success: #2DBE73;
+  --color-zarea-secondary: #0E2437;
+  --color-zarea-border-light: #DDDEDF;
+  --color-zarea-black: #000911;
+  --color-zarea-light-gray: #F5F5F5;
+  --color-zarea-border-gray: #C3C5C8;
+  --color-graphite-navy-50: #E7E9EB;
+  --color-accent-orange-50: #FBEEEB;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-gilroy), Inter, system-ui, sans-serif;
+}
+
+/* Font Utility Classes */
+.font-gilroy {
+  font-family: var(--font-gilroy), Inter, system-ui, sans-serif;
+}
+
+.font-inter {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-kode-mono), monospace;
+}
+
+.font-broetown-signature {
+  font-family: var(--font-broetown-signature), cursive, serif;
+}
+
+.font-broad {
+  font-family: var(--font-broad), Arial, sans-serif;
+}
+
+/* Slick Slider Custom Styles for Marquee */
+.slick-track {
+  display: flex !important;
+  align-items: center;
+}
+
+.slick-slide {
+  height: auto;
+  float: none !important;
+}
+
+.slick-slide > div {
+  height: 100%;
+}
+
+svg:focus{
+  outline: none;
+}
