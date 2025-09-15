@@ -92,14 +92,14 @@ export default function MarqueeSlider({
 
   return (
     <div 
-      className={`${backgroundColor} ${textColor} py-3 overflow-hidden ${className}`}
+      className={`${backgroundColor} ${textColor} sm:py-3 py-2.5 overflow-hidden ${className}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <Slider ref={sliderRef} {...marqueeSettings}>
         {items.map((item, index) => (
           <div key={index} className="px-[27px] border-r border-white">
-            <span className={`text-xs whitespace-nowrap inline-block leading-6 font-mono ${itemClassName}`}>
+            <span className={`text-xs whitespace-nowrap inline-block leading-[22px] font-mono ${itemClassName}`}>
               {item}
             </span>
           </div>
