@@ -40,7 +40,7 @@ export default function ZareaServices() {
   ];
 
   return (
-    <section className="py-10 sm:py-16 lg:py-20 bg-white">
+    <section className="py-6 sm:py-16 lg:py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="mb-8 sm:mb-12 lg:mb-20 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-4">
           <div>

@@ -266,7 +266,7 @@ export default function MarketPrices() {
   const currentData = marketData[activeTab] || marketData['cement'];
 
   return (
-    <section className="py-10 sm:py-16 lg:py-20 bg-white">
+    <section className="py-6 sm:py-16 lg:py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="mb-8 sm:mb-12 lg:mb-16">
           <h4 className="text-sm sm:text-base lg:text-xl text-zarea-gray uppercase mb-3 sm:mb-4 font-medium">STAY INFORMED. TRADE SMART.</h4>

@@ -24,16 +24,16 @@ export default function HeroSection() {
        
             <div className="space-y-6 sm:space-y-8">
               <div>
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[64px] font-bold leading-tight sm:leading-normal lg:leading-[77px] mb-3 sm:mb-4">
+                <h1 className="text-[40px] lg:text-[64px] font-bold leading-tight sm:leading-normal lg:leading-[77px] mb-3 sm:mb-4">
                   Simplifying Commodity Trade
                   <br className="hidden sm:block" />
                   <span className="sm:hidden"> </span>for Modern Businesses
                 </h1>
-                <p className="text-base sm:text-lg md:text-xl text-white max-w-xs sm:max-w-md lg:max-w-lg">
+                <p className="text-lg md:text-xl text-white max-w-xs sm:max-w-md lg:max-w-lg">
                   Explore opportunities and expand your reach in global markets.
                 </p>
               </div>
-              <div className="flex items-center justify-start sm:justify-end">
+              <div className="flex items-center justify-end">
                 <Button 
                   variant="primary" 
                   size="lg"

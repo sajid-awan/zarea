@@ -28,13 +28,13 @@ const HighlightsSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-8 sm:py-12 lg:py-[50px] bg-white">
+    <section className="py-6 sm:py-12 lg:py-[50px] bg-white">
       <div className="container mx-auto 2xl:px-2 px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
           {highlights.map((item, index) => (
             <div 
               key={index} 
-              className="relative rounded-2xl sm:rounded-3xl overflow-hidden p-4 sm:p-6 transition-all duration-300 min-h-[200px] sm:min-h-[240px] flex flex-col justify-between border border-graphite-navy-50 hover:border-zarea-primary-orange group"
+              className="relative rounded-2xl sm:rounded-3xl overflow-hidden px-4 py-6 sm:p-6 transition-all duration-300 min-h-[200px] sm:min-h-[240px] flex flex-col justify-between border border-graphite-navy-50 hover:border-zarea-primary-orange group"
               style={{
                 background: 'linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(231,233,235,0.7) 100%)'
               }}
@@ -57,9 +57,9 @@ const HighlightsSection: React.FC = () => {
               fill
               className="object-cover absolute inset-0 z-5" 
             />
-              <div className="relative z-10 max-w-[280px] sm:max-w-[300px]">
+              <div className="relative z-10 max-w-[232px] sm:max-w-[300px]">
               
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-zarea-black mb-3 sm:mb-4 leading-tight">{item.title}</h3>
+                <h3 className="text-xl lg:text-2xl font-bold text-zarea-black mb-3 sm:mb-4 leading-tight">{item.title}</h3>
                 {item.description && item.icon && item.amount &&(
                   <div className="flex items-center gap-2 mb-3 text-base sm:text-lg">
                     <span className="text-zarea-black">{item.description}</span>
@@ -71,9 +71,9 @@ const HighlightsSection: React.FC = () => {
               <div className="relative z-10 mt-auto">
                 <Button 
                   variant="primary" 
-                  size="responsive"
+                  size="lg"
                   radius="full"
-                  className="px-3 min-w-[140px] sm:min-w-[158px]"
+                  className="px-3  sm:min-w-[158px]"
                   rightIcon={<ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />}
                 >
                   {item.buttonText}

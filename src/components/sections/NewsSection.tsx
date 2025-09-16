@@ -80,7 +80,7 @@ export default function NewsSection() {
   };
 
   return (
-    <section className="py-10 sm:py-16 lg:py-20 bg-white">
+    <section className="py-6 sm:py-16 lg:py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-8 sm:mb-10 lg:mb-12 gap-4 lg:gap-0">
           <div>

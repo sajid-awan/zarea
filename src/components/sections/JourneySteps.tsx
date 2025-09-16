@@ -150,7 +150,7 @@ export default function JourneySteps() {
   }, [steps.length]);
 
   return (
-    <section ref={sectionRef} className="py-10 sm:py-16 lg:py-20 bg-white">
+    <section ref={sectionRef} className="py-6 sm:py-16 lg:py-20 bg-white">
       <div className="container mx-auto 2xl:px-2 px-4 sm:px-6">
         <div className="mb-8 sm:mb-12 lg:mb-20 max-w-[800px]">
           <h4 className="text-sm sm:text-base lg:text-xl text-zarea-gray uppercase mb-3 sm:mb-4 font-medium">Business with Zarea</h4>

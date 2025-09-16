@@ -30,10 +30,10 @@ export default function TrustedPartners() {
   ));
 
   return (
-    <section className="py-10 sm:py-16 lg:py-20 bg-white">
+    <section className="py-6 sm:py-16 lg:py-20 bg-white">
       <div className="container mx-auto 2xl:px-2 px-4 sm:px-6">
-        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
-          <p className="font-bold text-lg sm:text-xl lg:text-2xl text-black/50">Trusted by leading businesses across Pakistan</p>
+        <div className="text-center mb-4 sm:mb-10 lg:mb-12">
+          <p className="font-bold text-lg sm:text-xl lg:text-2xl text-black/50">Trusted by Industry Leaders</p>
         </div>
      
       </div>

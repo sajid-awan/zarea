@@ -35,7 +35,7 @@ export default function ProductCategories() {
   };
 
   return (
-    <section className="relative py-10 sm:py-16 lg:py-20 bg-zarea-secondary">
+    <section className="relative py-10 sm:py-16 lg:py-20 bg-zarea-secondary overflow-hidden">
       <div className="container mx-auto 2xl:px-2 px-4 sm:px-6">
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-6 sm:mb-8 lg:mb-10 gap-4 md:gap-0">
           <div>
@@ -65,7 +65,7 @@ export default function ProductCategories() {
             settings={settings}
             renderItem={(cat) => (
               <div className="rounded-2xl sm:rounded-3xl overflow-hidden relative min-h-[300px] sm:min-h-[400px] lg:min-h-[480px] bg-gray-800">
-                <Image src={cat.image} alt={cat.title} fill style={{ objectFit: 'cover' }} className="block" />
+                <Image src={cat.image} alt={cat.title} fill style={{ objectFit: 'cover' }} className="block max-w-full" />
 
                 <div className="absolute left-0 bottom-0 right-0 text-center text-white bg-[linear-gradient(180deg,rgba(14,36,55,0)_0%,#0E2437)_100%)] min-h-50 flex flex-col justify-end p-4 sm:p-6">
                   <h3 className="text-lg sm:text-xl lg:text-2xl font-medium">{cat.title}</h3>

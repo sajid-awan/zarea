@@ -21,12 +21,9 @@ import { Button } from "./ui";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
-  const [isClient, setIsClient] = useState(false);
+  const [isMegaMenuHovered, setIsMegaMenuHovered] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const isHomePage = pathname === '/';
 
   const renderIcon = (iconType: string) => {
     const iconClass = "w-5 h-5 text-orange-500";
@@ -234,7 +231,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="w-full absolute top-0 left-0 z-50">
+    <header className={`w-full ${pathname === '/' ? 'absolute' : 'relative'} top-0 left-0 z-50`}>
       <MarqueeSlider
         items={marketPrices}
         backgroundColor="bg-accent-orange"
@@ -242,19 +239,24 @@ export default function Header() {
         speed={5000}
         pauseOnHover={true}
       />
-      <div className=" py-4">
+      <div className={`py-4 transition-colors duration-200 ${isMegaMenuHovered || openSubmenu ? 'bg-white' : ''}`}>
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between">
-            <Image src="/Logo.svg" alt="Zarea Logo" width={132} height={28} />
+            <Image 
+              src={isMegaMenuHovered || openSubmenu ? "/zarea-logo.svg" : isHomePage ? "/Logo.svg" : "/zarea-logo.svg"} 
+              alt="Zarea Logo" 
+              width={132} 
+              height={28} 
+            />
 
             <div className="hidden lg:flex items-center space-x-8 ms-auto me-8">
-              <button className="text-white hover:text-orange-500 transition-colors cursor-pointer">
+              <button className={`${isMegaMenuHovered || openSubmenu ? 'text-zarea-black' : isHomePage ? 'text-white' : 'text-zarea-black'} hover:text-orange-500 transition-colors cursor-pointer`}>
                 <Search className="w-6 h-6" strokeWidth={1} />
               </button>
-              <button className="text-white hover:text-orange-500 transition-colors cursor-pointer">
+              <button className={`${isMegaMenuHovered || openSubmenu ? 'text-zarea-black' : isHomePage ? 'text-white' : 'text-zarea-black'} hover:text-orange-500 transition-colors cursor-pointer`}>
                 <ShoppingCart className="w-6 h-6" strokeWidth={1} />
               </button>
-              <button className="text-white hover:text-orange-500 transition-colors cursor-pointer">
+              <button className={`${isMegaMenuHovered || openSubmenu ? 'text-zarea-black' : isHomePage ? 'text-white' : 'text-zarea-black'} hover:text-orange-500 transition-colors cursor-pointer`}>
                 <PiUserLight className="w-6 h-6" />
               </button>
             </div>
@@ -270,7 +272,7 @@ export default function Header() {
                 Talk to Expert
               </Button>
               <Button
-                variant="outline-white"
+                variant={isMegaMenuHovered || openSubmenu ? "outline" : isHomePage ? "outline-white" : "outline"}
                 radius="full"
                 size="xl"
                 className="hidden sm:flex"
@@ -282,7 +284,7 @@ export default function Header() {
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="xl:hidden text-white hover:text-zarea-primary-orange"
+                className={`xl:hidden ${isHomePage ? 'text-white' : 'text-zarea-black'} hover:text-zarea-primary-orange`}
               >
                 {isMenuOpen ? (
                   <X className="w-5 h-5" />
@@ -294,48 +296,95 @@ export default function Header() {
           </div>
         </div>
       </div>
-      <div className="hidden xl:block border-t border-b border-zarea-border-light/10">
+      <div className={`hidden relative xl:block border-t ${isMegaMenuHovered ? 'bg-white' :''} border-b border-zarea-border-light/10 transition-colors duration-200`}>
         <div className="container mx-auto 2xl:px-2 px-4">
           <nav className="flex items-center justify-between">
             <div className="flex items-center space-x-8">
               {navigationLinks.map((link) => {
                 const isActive =
-                  isClient &&
-                  (pathname === link.href ||
-                    (link.hasDropdown && pathname.startsWith(link.href)));
+                  pathname === link.href ||
+                  (link.hasDropdown && pathname.startsWith(link.href));
 
                 if (link.hasDropdown) {
                   return (
-                    <div key={link.href} className="relative group">
+                    <div 
+                      key={link.href} 
+                      className="group"
+                      onMouseEnter={() => setIsMegaMenuHovered(true)}
+                      onMouseLeave={() => setIsMegaMenuHovered(false)}
+                    >
                       <Link
                         href={link.href}
                         className={`flex items-center 2xl:text-lg text-sm font-medium py-6 transition-colors ${
                           isActive
                             ? "text-zarea-primary-orange"
-                            : "text-white hover:text-zarea-primary-orange"
+                            : isMegaMenuHovered || openSubmenu
+                              ? "text-zarea-black hover:text-zarea-primary-orange"
+                              : isHomePage
+                                ? "text-white hover:text-zarea-primary-orange"
+                                : "text-zarea-black hover:text-zarea-primary-orange"
                         }`}
                       >
                         {link.label}
                         <ChevronDown className="ml-1 w-4 h-4" />
                       </Link>
-
-                      {/* Dropdown Menu */}
-                      <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                        <div className="py-2">
-                          {link.dropdownItems?.map((item) => (
-                            <Link
-                              key={item.href}
-                              href={item.href}
-                              className={`block px-4 py-2 text-sm transition-colors ${
-                                isClient && pathname === item.href
-                                  ? "text-zarea-primary-orange bg-orange-50"
-                                  : "text-gray-700 hover:text-zarea-primary-orange hover:bg-orange-50"
-                              }`}
-                            >
-                              {item.label}
-                            </Link>
-                          ))}
+                      <div className={`absolute top-full left-0 right-0  bg-white shadow-xl transition-all duration-200 z-50 ${isMegaMenuHovered ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+                       <div className="container mx-auto">
+                        <div className="px-6 py-4 grid grid-cols-3 gap-6 group-hover:bg-white transition-colors duration-200">
+                          <div className="space-y-8 col-span-2">
+                            <div>
+                            <h2 className="text-zarea-black text-[32px] font-bold leading-[120%] mb-3">About Zarea</h2>
+                            <p className="text-zarea-black text-xl leading-[125%]">shaping the future of trade and commerce with Zarea.</p>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                            {link.dropdownItems?.map((item) => (
+                              <Link
+                                key={item.href}
+                                href={item.href}
+                                className="flex items-start gap-4 py-3 px-3 rounded transition-colors group/item hover:bg-accent-orange-50"
+                              >
+                                <div className="w-12 h-12 rounded-lg bg-zarea-light-gray flex items-center justify-center flex-shrink-0">
+                                  {renderIcon(item.icon || "default")}
+                                </div>
+                                <div className="flex-1">
+                                  <h3 className="font-medium text-lg text-zarea-black">
+                                    {item.label}
+                                  </h3>
+                                  <p className="text-sm text-[#7A7E84]">{item.description}</p>
+                                </div>
+                              </Link>
+                            ))}
+                            </div>
+                            </div>
+                            <div className="mt-8 p-6 bg-zarea-accent-orange min-h-[409px] rounded-3xl text-white relative overflow-hidden">
+                              <div className="relative z-10">
+                                <p className="text-xl font-medium mb-2">Over <span className="italic font-bold">10,000+</span> Users</p>
+                                <h3 className="text-[28px] font-bold leading-[120%]  max-w-[300px] mb-2">
+                                  Built to Bridge the Gap Between Buyers and Suppliers.
+                                </h3>
+                                <Button
+                                  variant="outline-white"
+                                  size="lg"
+                                  radius="full"
+                                  href="/join"
+                                  className="inline-flex items-center gap-2 mt-4 text-white font-medium hover:text-zarea-primary-orange transition-colors"
+                                >
+                                  Join Zarea
+                                  <ArrowRight className="w-5 h-5" />
+                                </Button>
+                              </div>
+                              <div className="absolute bottom-0 right-0">
+                                <Image
+                                  src="/images/menu-image.png"
+                                  alt="Menu background"
+                                  width={400}
+                                  height={232}
+                                  className="object-cover"
+                                />
+                              </div>
+                            </div>
                         </div>
+                      </div>
                       </div>
                     </div>
                   );
@@ -348,7 +397,11 @@ export default function Header() {
                     className={`2xl:text-lg text-sm  py-6 font-medium transition-colors ${
                       isActive
                         ? "text-zarea-primary-orange"
-                        : "text-white hover:text-zarea-primary-orange"
+                        : isMegaMenuHovered || openSubmenu
+                          ? "text-zarea-black hover:text-zarea-primary-orange"
+                          : isHomePage
+                            ? "text-white hover:text-zarea-primary-orange"
+                            : "text-zarea-black hover:text-zarea-primary-orange"
                     }`}
                   >
                     {link.label}
@@ -361,16 +414,16 @@ export default function Header() {
               <Link
                 href="/login"
                 className={`2xl:text-lg text-sm  font-medium transition-colors ${
-                  isClient && pathname === "/login"
-                    ? "text-white"
-                    : "text-zarea-primary-orange hover:text-white"
+                  pathname === "/login"
+                    ? isHomePage ? "text-white" : "text-zarea-black"
+                    : isHomePage ? "text-zarea-primary-orange hover:text-white" : "text-zarea-primary-orange hover:text-zarea-black"
                 }`}
               >
                 Login
               </Link>
               <div className="flex items-center space-x-2">
-                <span className="text-white 2xl:text-base text-sm">EN</span>
-                <ChevronDown className="w-4 h-4 text-white" />
+                <span className={`${isHomePage ? 'text-white' : 'text-zarea-black'} 2xl:text-base text-sm`}>EN</span>
+                <ChevronDown className={`w-4 h-4 ${isHomePage ? 'text-white' : 'text-zarea-black'}`} />
               </div>
             </div>
           </nav>
@@ -418,9 +471,8 @@ export default function Header() {
               <div className="px-4">
                 {navigationLinks.map((link) => {
                   const isActive =
-                    isClient &&
-                    (pathname === link.href ||
-                      (link.hasDropdown && pathname.startsWith(link.href)));
+                    pathname === link.href ||
+                    (link.hasDropdown && pathname.startsWith(link.href));
 
                   if (link.hasDropdown) {
                     return (

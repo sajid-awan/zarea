@@ -11,6 +11,7 @@ const tabsVariants = cva(
       variant: {
         default: "",
         pills: "p-1 rounded-full",
+        underline: "",
       },
       size: {
         sm: "[&>button]:px-3 [&>button]:py-1 [&>button]:text-sm",
@@ -68,7 +69,7 @@ const tabVariants = cva(
       {
         variant: "underline",
         state: "inactive",
-        class: "text-gray-600 hover:text-gray-900 hover:border-gray-300",
+        class: "text-zarea-tab border-zarea-tab-inactive-border hover:text-zarea-black hover:border-zarea-tab",
       },
     ],
     defaultVariants: {

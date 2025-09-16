@@ -4,7 +4,7 @@ import { IconPaper, IconPowerPlant, IconCement, IconChemical, IconCattle, IconTe
 import { Button } from "../ui/Button";
 import { ArrowRight } from "lucide-react";
 
-export default function BusinessSectors() {
+export default function BusinessSectors({ textAlign = "text-center" , contentText = "mx-auto text-base" , isvisible = true}: { textAlign?: string, contentText?: string, isvisible?: boolean }) {
   const sectors = [
     { title: "Paper Manufacture", desc: "Reliable raw material sourcing to support continuous operations.", icon: <IconPaper  /> },
     { title: "Power Plants", desc: "Timely procurement of critical supplies for uninterrupted energy.", icon: <IconPowerPlant  /> },
@@ -25,14 +25,14 @@ export default function BusinessSectors() {
   ];
 
   return (
-    <section className="py-10 sm:py-16 lg:py-20 bg-white">
+    <section className="py-6 sm:py-16 lg:py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+        <div className={`${textAlign}  mb-12 sm:mb-16 lg:mb-20`}>
           <h4 className="text-base sm:text-lg lg:text-xl text-zarea-gray uppercase mb-3 sm:mb-4 font-medium">Business zarea cater to</h4>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-zarea-black mb-2 sm:mb-4">
           Serving Pakistan's Diverse Business Sectors
           </h2>
-          <p className="text-zarea-black max-w-2xl mx-auto text-base sm:text-lg lg:text-xl px-4 sm:px-0">Whether you're a small shop or a large-scale enterprise, Zarea delivers tailored supply solutions for your industry needs.</p>
+          <p className={`text-zarea-black max-w-2xl ${contentText} sm:text-lg lg:text-xl px-4 sm:px-0`}>Whether you're a small shop or a large-scale enterprise, Zarea delivers tailored supply solutions for your industry needs.</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-7">
@@ -56,11 +56,11 @@ export default function BusinessSectors() {
             </div>
           ))}
         </div>
-
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 mt-8 sm:mt-10">
+        {isvisible && <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 mt-8 sm:mt-10">
           <Button variant="primary" radius="full" size="responsive-lg" rightIcon={<ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />}>Talk to a Specialist</Button>
           <Button variant="outline-secondary" radius="full" size="responsive-lg">Start Sourcing Today</Button>
-        </div>
+        </div>}
+        
       </div>
     </section>
   );
